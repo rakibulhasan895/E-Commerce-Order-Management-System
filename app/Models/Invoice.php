@@ -6,5 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Invoice extends Model
 {
-    //
+
+    protected $fillable = ['order_id', 'invoice_pdf', 'generated_at'];
+
+    public function order() 
+    {
+        return $this->belongsTo(Order::class);
+    }
 }

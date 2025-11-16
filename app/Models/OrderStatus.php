@@ -6,5 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class OrderStatus extends Model
 {
-    //
+
+    protected $fillable = ['order_id', 'old_status', 'new_status', 'changed_by'];
+
+    public function order() 
+    {
+        return $this->belongsTo(Order::class);
+    }
+
+    public function user() 
+    {
+        return $this->belongsTo(User::class, 'changed_by');
+    }
 }

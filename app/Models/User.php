@@ -20,6 +20,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'role_id',
         'password',
     ];
 
@@ -44,5 +45,25 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function role() 
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function products() 
+    {
+        return $this->hasMany(Product::class, 'vendor_id');
+    }
+
+    public function orders() 
+    {
+        return $this->hasMany(Order::class, 'customer_id');
+    }
+
+    public function refreshTokens() 
+    {
+        return $this->hasMany(RefreshToken::class);
     }
 }
