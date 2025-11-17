@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('order_id')->constrained('orders')->onDelete('cascade');
             $table->string('invoice_pdf');
-            $table->dateTime('generated_at');
+            $table->dateTime('generated_at')->index();
             $table->timestamps();
         });
     }

@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('vendors', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->string('shop_name');
+            $table->string('shop_name')->index();
             $table->string('shop_slug')->unique();
             $table->string('shop_logo')->nullable();
             $table->string('address')->nullable();
-            $table->string('phone')->nullable();
+            $table->string('phone')->unique()->nullable();
             $table->timestamps();
         });
     }
